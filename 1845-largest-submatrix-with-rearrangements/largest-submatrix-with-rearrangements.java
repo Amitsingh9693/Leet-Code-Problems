@@ -5,7 +5,6 @@ class Solution {
 
         int[][] height = new int[m][n];
 
-        // Step 1: Build heights
         for (int j = 0; j < n; j++) {
             height[0][j] = matrix[0][j];
             for (int i = 1; i < m; i++) {
@@ -16,12 +15,9 @@ class Solution {
 
         int res = 0;
 
-        // Step 2: Process each row
         for (int i = 0; i < m; i++) {
-            // sort row in descending order
             Arrays.sort(height[i]);
 
-            // try all widths
             for (int j = n - 1; j >= 0; j--) {
                 int h = height[i][j];
                 int width = n - j;
