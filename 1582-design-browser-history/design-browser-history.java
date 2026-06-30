@@ -1,29 +1,41 @@
+class Node{
+    String str;
+    Node prev;
+    Node next;
+
+    Node(String str){
+        this.str=str;
+    }
+}
+
 class BrowserHistory {
-    Stack<String> history=new Stack<>(); 
-    Stack<String> trash=new Stack<>(); 
+    Node curr;
     public BrowserHistory(String homepage) {
-        history.add(homepage);
+        curr=new Node(homepage);
     }
     
     public void visit(String url) {
-        history.add(url);
-        trash.clear();
+        Node newnode=new Node(url);
+        curr.next=newnode;
+        newnode.prev=curr;
+
+        curr=newnode;
     }
     
     public String back(int steps) {
-        while(steps!=0 && history.size()>1){
-            trash.add(history.pop());
+        while(steps>0 && curr.prev!=null){
+            curr=curr.prev;
             steps--;
         }
-        return history.peek();
+        return curr.str;
     }
     
     public String forward(int steps) {
-        while(steps!=0 && trash.size()>=1){
-            history.add(trash.pop());
+        while(steps>0 && curr.next!=null){
+            curr=curr.next;
             steps--;
         }
-        return history.peek();
+        return curr.str;
     }
 }
 
