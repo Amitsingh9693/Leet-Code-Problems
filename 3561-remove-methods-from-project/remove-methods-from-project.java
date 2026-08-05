@@ -5,19 +5,6 @@ class Solution {
             if (!vis[i])
                 dfs(i, vis, adj);
     }
-
-    boolean check(int i, boolean[] vis, ArrayList<ArrayList<Integer>> adj) {
-        vis[i] = true;
-        for (int j : adj.get(i)) {
-            if (!vis[j])
-                check(j, vis, adj);
-            else
-                return true;
-        }
-        vis[i] = false;
-        return false;
-    }
-
     public List<Integer> remainingMethods(int n, int k, int[][] invocations) {
         List<Integer> ans = new ArrayList<>();
         ArrayList<ArrayList<Integer>> adj = new ArrayList<>();
