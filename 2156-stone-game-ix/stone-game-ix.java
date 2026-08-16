@@ -1,22 +1,15 @@
 class Solution {
-
     public boolean stoneGameIX(int[] stones) {
-        int cnt0 = 0,
-            cnt1 = 0,
-            cnt2 = 0;
-        for (int val : stones) {
-            int type = val % 3;
-            if (type == 0) {
-                ++cnt0;
-            } else if (type == 1) {
-                ++cnt1;
-            } else {
-                ++cnt2;
-            }
+        int[] cnt = new int[3];
+
+        for (int stone : stones) {
+            cnt[stone % 3]++;
         }
-        if (cnt0 % 2 == 0) {
-            return cnt1 >= 1 && cnt2 >= 1;
+
+        if (cnt[0] % 2 == 0) {
+            return cnt[1] > 0 && cnt[2] > 0;
         }
-        return cnt1 - cnt2 > 2 || cnt2 - cnt1 > 2;
+
+        return Math.abs(cnt[1] - cnt[2]) > 2;
     }
 }
