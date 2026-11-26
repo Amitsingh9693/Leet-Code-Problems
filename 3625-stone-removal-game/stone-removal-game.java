@@ -5,7 +5,6 @@ class Solution {
         while(n>0){
             if(n-r<0) break;
             n-=r;
-            System.out.print(n);
             r--;
             c++;
         }
